@@ -161,7 +161,7 @@ Resources:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'awsrea11d087c1_sns-role', !Join ['',[ 'sns', '11d087c1', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'awsrea1239886f_sns-role', !Join ['',[ 'sns', '1239886f', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -173,10 +173,10 @@ Resources:
               - "sts:AssumeRole"
             Condition:
               StringEquals:
-                sts:ExternalId: awsrea11d087c1_role_external_id
+                sts:ExternalId: awsrea1239886f_role_external_id
       Policies:
         -
-          PolicyName: awsrea11d087c1-sns-policy
+          PolicyName: awsrea1239886f-sns-policy
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -205,32 +205,19 @@ Resources:
           Required: true
           Mutable: true
         
-        -
-          Name: preferred_username
-          Required: true
-          Mutable: true
-        
-        -
-          Name: gender
-          Required: true
-          Mutable: true
-        
       
       
       
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
       
-      EmailVerificationMessage: !Ref emailVerificationMessage
-      EmailVerificationSubject: !Ref emailVerificationSubject
-      
       Policies:
         PasswordPolicy:
           MinimumLength: !Ref passwordPolicyMinLength
           RequireLowercase: true
-          RequireNumbers: false
+          RequireNumbers: true
           RequireSymbols: false
-          RequireUppercase: true
+          RequireUppercase: false
       
       UsernameAttributes: !Ref usernameAttributes
       
@@ -238,7 +225,7 @@ Resources:
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsConfiguration:
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: awsrea11d087c1_role_external_id
+        ExternalId: awsrea1239886f_role_external_id
     
   
   UserPoolClientWeb:
@@ -246,7 +233,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: awsrea11d087c1_app_clientWeb
+      ClientName: awsrea1239886f_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -256,7 +243,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: awsrea11d087c1_app_client
+      ClientName: awsrea1239886f_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -267,7 +254,7 @@ Resources:
   # Created to execute Lambda which gets userpool app client config values
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '11d087c1', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '1239886f', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -321,7 +308,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: awsrea11d087c1_userpoolclient_lambda_iam_policy
+      PolicyName: awsrea1239886f_userpoolclient_lambda_iam_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -338,7 +325,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: awsrea11d087c1_userpoolclient_lambda_log_policy
+      PolicyName: awsrea1239886f_userpoolclient_lambda_log_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:

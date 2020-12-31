@@ -1,29 +1,27 @@
 {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "awsrea11d087c1",
+    "resourceNameTruncated": "awsrea1239886f",
     "userPoolName": "awsreact",
     "autoVerifiedAttributes": [
-        "email"
+        "phone_number"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
         "SMS Text Message"
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
-    "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Forgot password code: {####}",
-    "emailVerificationMessage": "Forgot password code: {####}",
+    "smsVerificationMessage": "Forgot password code: {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
         "Requires Lowercase",
-        "Requires Uppercase"
+        "Requires Numbers"
     ],
     "requiredAttributes": [
-        "email",
-        "preferred_username",
-        "gender"
+        "email"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -33,9 +31,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "awsrea11d087c1_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "awsrea1239886f_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "11d087c1",
+    "sharedId": "1239886f",
     "resourceName": "awsreact",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
